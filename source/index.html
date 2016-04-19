@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Arcade Game</title>
+	<title>Minescooper</title>
 	<style>
 	html, body {
 		background: #000;
 		min-height: 100%;
 	}
+        label {
+                color: #fff;
+        }
 	canvas {
 		position: absolute;
 		width: 800px;
@@ -21,33 +24,55 @@
 		-moz-transform: translateX(-50%) translateY(-50%);
 		transform: translateX(-50%) translateY(-50%);
 	}
-	canvas#arcade {
+	canvas#gameCanvas {
 		background: #fff;
 		border-radius: 6px;
 	}
-	button {
-		background: green;
-		border-radius: 6px;
-		border: none;
-		bottom: 0;
-		color: #fff;
-		cursor: pointer;
-		font-size: 16px;
-		font-weight: bold;
-		left: 50%;
-		line-height: 40px;
-		margin-left: -75px;
-		outline-style: none;
-		position: absolute;
-		width: 150px;
-		z-index: 2;
-	}
+        input {
+                width: 50px;
+        }
 	</style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
-	<canvas id="arcade"></canvas>
-	<canvas id="debug"></canvas>
-	<button id="toggle-debug">Toggle Debug</button>
+        <table>
+                <tr><td><label>Rows</label></td></tr>
+                <tr><td><input id="rows" type="text" value="10"></input></td></tr>
+                <tr><td><label>Columns</label></td></tr>
+                <tr><td><input id="columns" type="text" value="10"></input></td></tr>
+                <tr><td><label>Mines</label></td></tr>
+                <tr><td><input id="mines" type="text" value="10"></input></td></tr>
+                <tr><td><label>Board</label></td></tr>
+                <tr><td><select id="board" onchange="document.getElementById('gameCanvas').mineGame.restart(true);">
+                                <option value="classic">Classic</option>
+                                <option value="hexagonal">Hexagonal</option>
+                                <option value="hexagonal_shifted">Hexagonal Shifted</option>
+                                <option value="brick">Brick</option>
+                                <option value="parquet">Parquet</option>
+                                <option value="triangle">Triangle</option>
+                                <option value="triangle_shifted">Triangle Shifted</option>
+                                <option value="crossed_squares">Crossed Squares</option>
+                                <option value="octagon">Octagon</option>
+                                <option value="ninety_circles">90-Degree Circles</option>
+                                <option value="sixty_circles">60-Degree Circles</option>
+                                <option value="tilted_h" selected>Tilted H</option>
+                        </select></td></tr>
+                <tr><td><label>Difficulty</label></td></tr>
+                <tr><td><select id="difficulty">
+                                <option value="expert">Expert</option>
+                        </select></td></tr>
+                <tr><td><label>Mines Left</label></td></tr>
+                <tr><td><button id="next" onclick="document.getElementById('gameCanvas').mineGame.nextBoard();">Next Board</button></td></tr>
+                <tr><td><label>Mines Left</label></td></tr>
+                <tr><td><label id="minesLeft"></label></td></tr>
+                <!--<tr><td><label>Guesses Left</label></td></tr>-->
+                <!--<tr><td><label id="guessesLeft"></label></td></tr>-->
+                <tr><td><label>Active</label></td></tr>
+                <tr><td><label id="active">true</label></td></tr>
+	        <tr><td><button id="restart" onclick="document.getElementById('gameCanvas').mineGame.restart();">Restart</button></td></td>
+	        <tr><td><button id="suggest" onclick="document.getElementById('gameCanvas').mineGame.suggest();">Suggest Values</button></td></td>
+        </table>
+	<canvas id="gameCanvas"></canvas>
 
 	<script src="compiled.js"></script>
 </body>

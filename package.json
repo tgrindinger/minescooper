@@ -1,5 +1,5 @@
 {
-  "name": "easeljs-box2d-example",
+  "name": "minescooper",
   "version": "0.1.1",
   "browser": {
     "createjs": "./source/javascripts/vendor/easel.js",

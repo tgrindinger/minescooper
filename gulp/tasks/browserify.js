@@ -9,7 +9,7 @@ gulp.task('browserify', function() {
 	var bundleMethod = global.isWatching ? watchify : browserify;
 
 	var bundler = bundleMethod({
-		entries: ['./source/javascripts/game.coffee'],
+		entries: ['./source/javascripts/minegame.coffee'],
 		extensions: ['.coffee']
 	});
 
