@@ -37,7 +37,6 @@
     "watchify": "^3.7.0"
   },
   "scripts": {
-    "postinstall": "npm install",
     "start": "gulp"
   }
 }
