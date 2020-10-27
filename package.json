@@ -37,6 +37,10 @@
     "watchify": "^3.7.0"
   },
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "start": "gulp"
+  },
+  "resolutions": {
+    "graceful-fs": "^4.2.4"
   }
 }
