@@ -89,7 +89,7 @@ class GameCell
       @stage.update()
 
   handleOpenMarkedNeighbors: =>
-    if @markedNeighbors() + @revealedMineNeighbors() == @count
+    if @markedNeighbors() + @revealedMineNeighbors() >= @count
       #if @hasOpenNeighborMine()
       #  @board.loseGame()
       #else
@@ -97,6 +97,11 @@ class GameCell
       @stage.update()
       @board.checkGame()
   
+  handleMarkOpenNeighbors: =>
+    if @markedNeighbors() + @revealedMineNeighbors() + @unmarkedNeighbors() == @count
+      @markUnmarkedNeighbors()
+      @stage.update()
+
   shapeDblClick: (event) =>
     if @board.active
       @handleOpenMarkedNeighbors()
@@ -111,8 +116,10 @@ class GameCell
       @board.setupBoard()
 
   shapeMouseUp: (event) =>
-    if @board.active && @board.leftMouseDown && @board.rightMouseDown
+    if @board.active && @board.leftMouseDown
       @handleOpenMarkedNeighbors()
+    else if @board.active && @board.rightMouseDown
+      @handleMarkOpenNeighbors()
     if event.nativeEvent.button == 2
       @board.rightMouseDown = false
     else
@@ -129,6 +136,9 @@ class GameCell
 
   markedNeighbors: =>
     (c for c in @neighbors when c.isMarked()).length
+
+  unmarkedNeighbors: =>
+    (c for c in @neighbors when !c.isMarked() && !c.isRevealed()).length
 
   revealedMineNeighbors: =>
     (c for c in @neighbors when c.isRevealedMine()).length
@@ -158,6 +168,9 @@ class GameCell
 
   openUnmarkedNeighbors: =>
     (c.open() unless c.isMarked() || c.isRevealedMine()) for c in @neighbors
+
+  markUnmarkedNeighbors: =>
+    (c.mark() unless c.isMarked() || c.isRevealedMine() || c.isRevealed()) for c in @neighbors
 
   hasOpenNeighborMine: =>
     (c for c in @neighbors when c.hasMine() && !c.isMarked()).length > 0
