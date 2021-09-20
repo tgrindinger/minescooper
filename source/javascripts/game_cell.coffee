@@ -89,7 +89,7 @@ class GameCell
       @stage.update()
 
   handleOpenMarkedNeighbors: =>
-    if @markedNeighbors() + @revealedMineNeighbors() >= @count
+    if !@hasMine() && @markedNeighbors() + @revealedMineNeighbors() >= @count
       #if @hasOpenNeighborMine()
       #  @board.loseGame()
       #else
@@ -138,7 +138,7 @@ class GameCell
     (c for c in @neighbors when c.isMarked()).length
 
   unmarkedNeighbors: =>
-    (c for c in @neighbors when !c.isMarked() && !c.isRevealed()).length
+    (c for c in @neighbors when !c.isMarked() && !c.isRevealed() && !c.isRevealedMine()).length
 
   revealedMineNeighbors: =>
     (c for c in @neighbors when c.isRevealedMine()).length
