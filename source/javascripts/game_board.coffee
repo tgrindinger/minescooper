@@ -32,7 +32,10 @@ class GameBoard
     @generateCellList()
     @placeMines()
     @populateCounts()
-    document.getElementById("active").innerHTML = @active = true
+    @active = true
+    element = document.getElementById("active")
+    element.innerHTML = 'TRUE'
+    element.style = "color:green"
 
   generate: =>
     @generateHelper()
@@ -89,7 +92,11 @@ class GameBoard
     revCells = 0
     revCells++ for c in @cells when c.isRevealed()
     if revCells + @mines == @cells.length
-      document.getElementById("active").innerHTML = @active = false
+      @active = false
+      element = document.getElementById("active")
+      element.innerHTML = "FALSE"
+      element.style = "color:red"
+
       @markAllCells()
 
   minesLeft: =>

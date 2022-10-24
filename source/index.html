@@ -44,41 +44,35 @@
 </head>
 <body>
         <table>
-                <tr><td><label>Rows</label></td></tr>
-                <tr><td><input id="rows" type="text" value="10"></input></td></tr>
-                <tr><td><label>Columns</label></td></tr>
-                <tr><td><input id="columns" type="text" value="10"></input></td></tr>
-                <tr><td><label>Mines</label></td></tr>
-                <tr><td><input id="mines" type="text" value="10"></input></td></tr>
-                <tr><td><label>Board</label></td></tr>
-                <tr><td><select id="board" onchange="document.getElementById('gameCanvas').mineGame.restart(true);">
-                                <option value="classic">Classic</option>
-                                <option value="hexagonal">Hexagonal</option>
-                                <option value="hexagonal_shifted">Hexagonal Shifted</option>
-                                <option value="brick">Brick</option>
-                                <option value="parquet">Parquet</option>
-                                <option value="triangle">Triangle</option>
-                                <option value="triangle_shifted">Triangle Shifted</option>
-                                <option value="crossed_squares">Crossed Squares</option>
-                                <option value="octagon">Octagon</option>
-                                <option value="ninety_circles">90-Degree Circles</option>
-                                <option value="sixty_circles">60-Degree Circles</option>
-                                <option value="tilted_h" selected>Tilted H</option>
-                        </select></td></tr>
-                <tr><td><label>Difficulty</label></td></tr>
+                <tr><td><label>Rows: </label><input id="rows" type="text" value="16"></input></td></tr>
+                <tr><td><label>Columns: </label><input id="columns" type="text" value="30"></input></td></tr>
+                <tr><td><label>Mines: </label><input id="mines" type="text" value="99"></input></td></tr>
+                <tr><td><label>Mines Left: </label><label id="minesLeft"></label></td></tr>
+                <tr><td><label>Active: </label><label id="active" style="color:green">TRUE</label></td></tr>
+                <tr><td><label>Board: </label>
+                        <select id="board" onchange="document.getElementById('gameCanvas').mineGame.restart(true);">
+                        <option value="classic" selected>Classic</option>
+                        <option value="hexagonal">Hexagonal</option>
+                        <option value="hexagonal_shifted">Hexagonal Shifted</option>
+                        <option value="brick">Brick</option>
+                        <option value="parquet">Parquet</option>
+                        <option value="triangle">Triangle</option>
+                        <option value="triangle_shifted">Triangle Shifted</option>
+                        <option value="crossed_squares">Crossed Squares</option>
+                        <option value="octagon">Octagon</option>
+                        <option value="ninety_circles">90-Degree Circles</option>
+                        <option value="sixty_circles">60-Degree Circles</option>
+                        <option value="tilted_h">Tilted H</option>
+                </select></td></tr>
+                <!-- <tr><td><label>Difficulty</label></td></tr>
                 <tr><td><select id="difficulty">
-                                <option value="expert">Expert</option>
-                        </select></td></tr>
-                <tr><td><label>Mines Left</label></td></tr>
-                <tr><td><button id="next" onclick="document.getElementById('gameCanvas').mineGame.nextBoard();">Next Board</button></td></tr>
-                <tr><td><label>Mines Left</label></td></tr>
-                <tr><td><label id="minesLeft"></label></td></tr>
+                        <option value="expert">Expert</option>
+                </select></td></tr> -->
                 <!--<tr><td><label>Guesses Left</label></td></tr>-->
                 <!--<tr><td><label id="guessesLeft"></label></td></tr>-->
-                <tr><td><label>Active</label></td></tr>
-                <tr><td><label id="active">true</label></td></tr>
-	        <tr><td><button id="restart" onclick="document.getElementById('gameCanvas').mineGame.restart();">Restart</button></td></td>
 	        <tr><td><button id="suggest" onclick="document.getElementById('gameCanvas').mineGame.suggest();">Suggest Values</button></td></td>
+                <tr><td><button id="next" onclick="document.getElementById('gameCanvas').mineGame.nextBoard();">Next Board</button></td></tr>
+	        <tr><td><button id="restart" onclick="document.getElementById('gameCanvas').mineGame.restart();">Restart</button></td></td>
         </table>
 	<canvas id="gameCanvas"></canvas>
 
