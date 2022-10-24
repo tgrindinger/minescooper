@@ -1,6 +1,10 @@
 {
   "name": "minescooper",
   "version": "0.1.1",
+  "engines": {
+    "npm": "^6.13.4",
+    "node": "^10.18.0"
+  },
   "browser": {
     "createjs": "./source/javascripts/vendor/easel.js",
     "stats": "./source/javascripts/vendor/stats.js"

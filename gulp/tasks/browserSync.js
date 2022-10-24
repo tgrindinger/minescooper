@@ -6,6 +6,6 @@ gulp.task('browserSync', ['build'], function() {
 		server: {
 			baseDir: './build'
 		},
-                port: process.env.PORT || 3000
+        port: process.env.PORT || 3000
 	});
 });
