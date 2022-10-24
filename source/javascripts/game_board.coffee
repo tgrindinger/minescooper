@@ -1,4 +1,4 @@
-createjs    = require 'createjs'
+createjs = require 'createjs'
 
 class GameBoard
   constructor: (stage, rows, columns, mines) ->
